@@ -27,6 +27,6 @@
     "webpack-cli": "^2.0.15"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.12.1"
   }
 }
