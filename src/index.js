@@ -1,4 +1,5 @@
 import axios from 'axios'
+import log from './learn-webpack'
 
 async function component () {
   const element1 = document.createElement('div')
@@ -22,3 +23,4 @@ async function component () {
 }
 
 component()
+log()
