@@ -1,15 +1,19 @@
 /* eslint-disable global-require */
+
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'development',
   entry: {
-    main: './src/index.js'
+    index: './src/index.js',
+    compose: './src/compose.js'
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].[hash:5].js',
     path: path.resolve(__dirname, 'dist')
+    // publicPath: 'https://cdn.com/'
   },
   module: {
     rules: [
@@ -55,6 +59,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    }),
+    new CleanWebpackPlugin()
   ]
 }
