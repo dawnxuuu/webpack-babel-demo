@@ -1,4 +1,6 @@
+/* eslint-disable global-require */
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -18,9 +20,10 @@ module.exports = {
       },
       {
         test: /\.(jpg|png|gif)$/,
-        loader: 'file-loader',
+        loader: 'url-loader',
         options: {
-          name: '[path][name].[hash:5].[ext]'
+          name: '[path][name].[hash:5].[ext]',
+          limit: 200
         }
       },
       {
@@ -32,6 +35,8 @@ module.exports = {
       },
       {
         test: /\.less$/i,
+        // 执行顺序从后到前
+        // use: ['style-loader', 'css-loader', 'less-loader']
         use: [
           {
             loader: 'style-loader' // 从 JS 中创建样式节点
@@ -40,10 +45,16 @@ module.exports = {
             loader: 'css-loader' // 转化 CSS 为 CommonJS
           },
           {
+            loader: 'postcss-loader'
+          },
+          {
             loader: 'less-loader' // 编译 Less 为 CSS
           }
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin()
+  ]
 }
