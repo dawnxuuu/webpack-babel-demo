@@ -5,10 +5,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
+  // development production
   mode: 'development',
+  // 生产环境：cheap-module-source-map
+  devtool: 'cheap-module-eval-source-map',
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    host: '0.0.0.0',
+    port: 9090
+    // proxy: {
+    //   '/api': 'local:8081'
+    // }
+  },
   entry: {
-    index: './src/index.js',
-    compose: './src/compose.js'
+    index: './src/index.js'
   },
   output: {
     filename: '[name].[hash:5].js',
