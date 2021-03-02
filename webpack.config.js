@@ -6,9 +6,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   // development production
-  mode: 'development',
-  // 生产环境：cheap-module-source-map
-  devtool: 'cheap-module-eval-source-map',
+  mode: 'production',
+  // 生产环境：cheap-module-source-map cheap-module-eval-source-map
+  devtool: 'none',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     host: '0.0.0.0',
@@ -29,15 +29,15 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        exclude: /(node_modules|bower_components)/
       },
       {
         test: /\.(jpg|png|gif)$/,
         loader: 'url-loader',
         options: {
           name: '[path][name].[hash:5].[ext]',
-          limit: 200
+          limit: 244
         }
       },
       {
